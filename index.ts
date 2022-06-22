@@ -31,6 +31,7 @@ import {
 import { runCommands } from '@hackbg/komandi'
 import { Console, bold, colors } from '@hackbg/konzola'
 
+import { ScrtChain } from '@fadroma/client-scrt'
 import { LegacyScrt } from '@fadroma/client-scrt-amino'
 import { Scrt } from '@fadroma/client-scrt-grpc'
 import { getScrtBuilder, getScrtDevnet, scrtConfig } from '@fadroma/ops-scrt'
@@ -124,7 +125,13 @@ const ChainOps = {
     }
     const chain = await Chains[name]()
     const agentOptions = { name: undefined }
-    if (chain.isDevnet) agentOptions.name = 'ADMIN'
+    if (chain.isDevnet) {
+      // for devnet, use auto-created genesis account
+      agentOptions.name = 'ADMIN'
+    } else if (chain instanceof ScrtChain) {
+      // for scrt-based chains, use mnemonic from environment
+      agentOptions.mnemonic = process.env.SCRT_AGENT_MNEMONIC
+    }
     const agent = await chain.getAgent(agentOptions)
     return { chain, agent, deployAgent: agent, clientAgent: agent }
   },

@@ -5,6 +5,7 @@ importers:
   .:
     specifiers:
       '@fadroma/client': workspace:^2
+      '@fadroma/client-scrt': workspace:^2
       '@fadroma/client-scrt-amino': workspace:^2
       '@fadroma/client-scrt-grpc': workspace:^2
       '@fadroma/ops': workspace:^1
@@ -28,6 +29,7 @@ importers:
       typescript: ^4.6.4
     dependencies:
       '@fadroma/client': link:packages/client
+      '@fadroma/client-scrt': link:packages/client-scrt
       '@fadroma/client-scrt-amino': link:packages/client-scrt-amino
       '@fadroma/client-scrt-grpc': link:packages/client-scrt-grpc
       '@fadroma/ops': link:packages/ops
@@ -103,7 +105,7 @@ importers:
       typescript: ^4.6.4
     dependencies:
       '@fadroma/client-scrt': link:../client-scrt
-      secretjs: 1.3.0-beta.1
+      secretjs: 1.3.0-beta.6
     devDependencies:
       '@hackbg/izdatel': link:../../toolbox/izdatel
       typescript: 4.6.4
@@ -171,6 +173,7 @@ importers:
     specifiers:
       '@fadroma/client': workspace:*
       '@fadroma/client-scrt': workspace:*
+      '@hackbg/izdatel': workspace:*
       '@hackbg/konzola': workspace:*
       typescript: ^4.6.4
     dependencies:
@@ -178,6 +181,7 @@ importers:
       '@fadroma/client-scrt': link:../client-scrt
       '@hackbg/konzola': link:../../toolbox/konzola
     devDependencies:
+      '@hackbg/izdatel': link:../../toolbox/izdatel
       typescript: 4.6.4
 
   shim:
@@ -213,7 +217,7 @@ importers:
       signal-exit: 3.0.7
     devDependencies:
       dts-gen: 0.6.0
-      typedoc: 0.23.0-beta.1_typescript@4.6.4
+      typedoc: 0.23.0-beta.5_typescript@4.6.4
       typescript: 4.6.4
 
   toolbox/dokeres:
@@ -231,7 +235,7 @@ importers:
     devDependencies:
       '@hackbg/izdatel': link:../izdatel
       '@types/dockerode': 3.3.9
-      typescript: 4.7.2
+      typescript: 4.7.4
 
   toolbox/forkers:
     specifiers:
@@ -247,8 +251,8 @@ importers:
     devDependencies:
       '@hackbg/ganesha': 2.0.3
       '@hackbg/izdatel': link:../izdatel
-      '@types/node': 17.0.35
-      typescript: 4.7.2
+      '@types/node': 18.0.0
+      typescript: 4.7.4
 
   toolbox/izdatel:
     specifiers: {}
@@ -285,16 +289,21 @@ importers:
       '@hackbg/izdatel': link:../izdatel
       '@hackbg/runspec': link:../runspec
       '@types/mkdirp': 1.0.2
-      '@types/node': 17.0.35
+      '@types/node': 18.0.0
       '@types/tmp': 0.2.3
       c8: 7.11.3
-      typescript: 4.7.2
+      typescript: 4.7.4
 
   toolbox/kitenik:
     specifiers: {}
 
   toolbox/komandi:
-    specifiers: {}
+    specifiers:
+      '@hackbg/izdatel': workspace:*
+      typescript: latest
+    devDependencies:
+      '@hackbg/izdatel': link:../izdatel
+      typescript: 4.7.4
 
   toolbox/konzola:
     specifiers:
@@ -446,7 +455,7 @@ packages:
       '@ganesha/core': 1.1.0
       '@ganesha/node': 2.1.0
       '@ganesha/node-legacy': 1.0.0
-      '@types/node': 17.0.35
+      '@types/node': 18.0.0
       chokidar: 3.5.3
       cross-spawn: 7.0.3
 
@@ -633,7 +642,7 @@ packages:
   /@types/mkdirp/1.0.2:
     resolution: {integrity: sha512-o0K1tSO0Dx5X6xlU5F1D6625FawhC3dU3iqr25lluNv/+/QIVH8RLNEiVokgIZo+mz+87w/3Mkg/VvQS+J51fQ==}
     dependencies:
-      '@types/node': 17.0.35
+      '@types/node': 18.0.0
     dev: true
 
   /@types/node/10.12.18:
@@ -657,6 +666,10 @@ packages:
 
   /@types/node/17.0.35:
     resolution: {integrity: sha512-vu1SrqBjbbZ3J6vwY17jBs8Sr/BKA+/a/WtjRG+whKg1iuLFOosq872EXS0eXWILdO36DHQQeku/ZcL6hz2fpg==}
+    dev: false
+
+  /@types/node/18.0.0:
+    resolution: {integrity: sha512-cHlGmko4gWLVI27cGJntjs/Sj8th9aYwplmZFwmmgYQQvL5NUsgVJG7OddLvNfLqYS31KFN0s3qlaD9qCaxACA==}
 
   /@types/prettier/2.6.1:
     resolution: {integrity: sha512-XFjFHmaLVifrAKaZ+EKghFHtHSUonyw8P2Qmy2/+osBnrKbH9UYtlK10zg8/kCt47MFilll/DEDKy3DHfJ0URw==}
@@ -2227,6 +2240,12 @@ packages:
     hasBin: true
     dev: true
 
+  /marked/4.0.17:
+    resolution: {integrity: sha512-Wfk0ATOK5iPxM4ptrORkFemqroz0ZDxp5MWfYA7H/F+wO17NRWV5Ypxi6p3g2Xmw2bKeiYOl6oVnLHKxBA0VhA==}
+    engines: {node: '>= 12'}
+    hasBin: true
+    dev: true
+
   /maximatch/0.1.0:
     resolution: {integrity: sha1-hs2NawTJ8wfAWmuUGZBtA2D7E6I=}
     engines: {node: '>=0.10.0'}
@@ -2623,6 +2642,26 @@ packages:
       long: 4.0.0
     dev: false
 
+  /protobufjs/6.11.3:
+    resolution: {integrity: sha512-xL96WDdCZYdU7Slin569tFX712BxsxslWwAfAhCYjQKGTq7dAU91Lomy6nLLhh/dyGhk/YH4TwTSRxTzhuHyZg==}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@protobufjs/aspromise': 1.1.2
+      '@protobufjs/base64': 1.1.2
+      '@protobufjs/codegen': 2.0.4
+      '@protobufjs/eventemitter': 1.1.0
+      '@protobufjs/fetch': 1.1.0
+      '@protobufjs/float': 1.0.2
+      '@protobufjs/inquire': 1.1.0
+      '@protobufjs/path': 1.1.2
+      '@protobufjs/pool': 1.1.0
+      '@protobufjs/utf8': 1.1.0
+      '@types/long': 4.0.1
+      '@types/node': 17.0.35
+      long: 4.0.0
+    dev: false
+
   /proxy-addr/2.0.7:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
     engines: {node: '>= 0.10'}
@@ -2904,8 +2943,8 @@ packages:
       - debug
     dev: false
 
-  /secretjs/1.3.0-beta.1:
-    resolution: {integrity: sha512-g0NgleCWvKKzQg3uFygbV8S39VXTXHHzENdCjtp/PrMHB1aXA64hEMUjcZTJrXyLEe1NC2gTZksPnYgAhFA/vg==}
+  /secretjs/1.3.0-beta.6:
+    resolution: {integrity: sha512-0dI11xiqKWnEZxVn4k1O7WHDQ1t2Qw2XZCzxVP1tBa7KdUj4aA6kTMKsZfNQh/cvrJwnsS87WtLxUNueh7AwJw==}
     dependencies:
       '@cosmjs/encoding': 0.27.1
       '@cosmjs/math': 0.27.1
@@ -2921,7 +2960,7 @@ packages:
       is-gzip: 2.0.0
       miscreant: 0.3.2
       pako: 2.0.4
-      protobufjs: 6.11.2
+      protobufjs: 6.11.3
       secure-random: 1.1.2
     transitivePeerDependencies:
       - google-protobuf
@@ -3338,15 +3377,15 @@ packages:
       typescript: 4.6.4
     dev: true
 
-  /typedoc/0.23.0-beta.1_typescript@4.6.4:
-    resolution: {integrity: sha512-jnMlqEYb9DgLgfzQk4peuWyWywAqG7LBECD4W0PHTdzWdbMhlk3GjVu9bPz+MyDwrCaNFlml5AB/Qd34iHZoZA==}
-    engines: {node: '>= 14'}
+  /typedoc/0.23.0-beta.5_typescript@4.6.4:
+    resolution: {integrity: sha512-6z6dJMIBbErjtLKJ4iTx9BN9/BwScARZq3YH4bmDOT0IN200FbT2A7JSGujw7rP6aMLlUm605VpZNIB4GYbDBg==}
+    engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
-      typescript: 4.0.x || 4.1.x || 4.2.x || 4.3.x || 4.4.x || 4.5.x || 4.6.x || ^4.6
+      typescript: 4.6.x || 4.7.x || ^4.6
     dependencies:
       lunr: 2.3.9
-      marked: 4.0.15
+      marked: 4.0.17
       minimatch: 5.1.0
       shiki: 0.10.1
       typescript: 4.6.4
@@ -3370,6 +3409,12 @@ packages:
 
   /typescript/4.7.2:
     resolution: {integrity: sha512-Mamb1iX2FDUpcTRzltPxgWMKy3fhg0TN378ylbktPGPK/99KbDtMQ4W1hwgsbPAsG3a0xKa1vmw4VKZQbkvz5A==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: true
+
+  /typescript/4.7.4:
+    resolution: {integrity: sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==}
     engines: {node: '>=4.2.0'}
     hasBin: true
     dev: true
@@ -3484,7 +3529,7 @@ packages:
       isexe: 2.0.0
 
   /wif/2.0.6:
-    resolution: {integrity: sha1-CNP1IFbGZnkplyb63g1DKudLRwQ=}
+    resolution: {integrity: sha512-HIanZn1zmduSF+BQhkE+YXIbEiH0xPr1012QbFEGB0xsKqJii0/SqJjyn8dFv6y36kOznMgMB+LGcbZTJ1xACQ==}
     dependencies:
       bs58check: 2.1.2
     dev: false
