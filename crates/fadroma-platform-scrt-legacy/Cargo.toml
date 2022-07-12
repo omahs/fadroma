@@ -1,5 +1,5 @@
 [package]
-name    = "fadroma-platform-scrt"
+name    = "fadroma-platform-scrt-legacy"
 version = "0.1.0"
 edition = "2018"
 authors = [
@@ -11,11 +11,11 @@ authors = [
 path = "lib.rs"
 
 [dependencies]
-cosmwasm-std     = { git = "https://github.com/scrtlabs/cosmwasm", branch = "secret" }
-cosmwasm-storage = { git = "https://github.com/scrtlabs/cosmwasm", branch = "secret" }
-cosmwasm-schema  = "0.10.1"
-schemars         = { version = "0.7" }
-serde            = { version = "1.0.103", default-features = false, features = ["derive"] }
+secret-cosmwasm-std     = "0.10.0"
+secret-cosmwasm-storage = "0.10.0"
+cosmwasm-schema         = "0.10.1"
+schemars                = { version = "0.7" }
+serde                   = { version = "1.0.103", default-features = false, features = ["derive"] }
 
 [features]
 default     = []
@@ -23,7 +23,7 @@ default     = []
 # optional as some merkle stores (like tries) don't support this
 # given Ethereum 1.0, 2.0, Substrate, and other major projects use Tries
 # we keep this optional, to allow possible future integration (or different Cosmos Backends)
-iterator    = []
+iterator    = ["secret-cosmwasm-std/iterator", "secret-cosmwasm-storage/iterator"]
 # staking exposes bindings to a required staking moudle in the runtime, via new
 # CosmosMsg types, and new QueryRequest types. This should only be enabled on contracts
 # that require these types, so other contracts can be used on systems with eg. PoA consensus
@@ -35,4 +35,4 @@ backtraces  = ["cosmwasm-std/backtraces"]
 # from inside your contract. This will only work in enclaves compiled in SW mode
 # and loading the contract for execution will fail if this is used a HW mode
 # enclave. This is done in order to provent leaking secrets in production.
-debug-print = []
+debug-print = ["secret-cosmwasm-std/debug-print"]

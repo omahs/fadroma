@@ -1,6 +1,6 @@
-pub use cosmwasm_std;
-pub use cosmwasm_storage;
-pub use cosmwasm_schema;
+pub use secret_cosmwasm_std;
+pub use secret_cosmwasm_storage;
+pub use secret_cosmwasm_schema;
 
 pub use serde;
 pub use schemars;
