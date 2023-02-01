@@ -290,7 +290,9 @@ export class DockerDevnet extends Devnet implements DevnetHandle {
       DockerDevnet.logFilter
     )
     // wait for port to be open
-    await this.waitPort({ host: this.host, port: Number(this.port) })
+    const conn = { host: this.host, port: Number(this.port) }
+    console.info('Waiting to connect to', conn)
+    await this.waitPort(conn)
     return this
   }
   /** Overridable for testing. */
