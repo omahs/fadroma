@@ -283,7 +283,7 @@ export class DockerDevnet extends Devnet implements DevnetHandle {
     this.save()
     // wait for logs to confirm that the genesis is done
     await waitUntilLogsSay(
-      this.container.container,
+      this.container!.container!,
       this.readyPhrase,
       false,
       this.waitSeconds,
@@ -292,6 +292,7 @@ export class DockerDevnet extends Devnet implements DevnetHandle {
     // wait for port to be open
     const conn = { host: this.host, port: Number(this.port) }
     console.info('Waiting to connect to', conn)
+    console.debug(await this.container!.container!.inspect())
     await this.waitPort(conn)
     return this
   }
