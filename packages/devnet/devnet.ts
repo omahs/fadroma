@@ -293,7 +293,7 @@ export class DockerDevnet extends Devnet implements DevnetHandle {
     const conn = { host: this.host, port: Number(this.port) }
     console.info('Waiting to connect to', conn)
     console.debug(await this.container!.container!.inspect())
-    await this.waitPort(conn)
+    try { await this.waitPort(conn) } catch (e) { console.warn(e) }
     return this
   }
   /** Overridable for testing. */
